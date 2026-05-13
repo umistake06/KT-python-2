@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h1>{{ post.title }}</h1>
+    <p><small>Автор: <strong>{{ post.author.username }}</strong> • {{ post.created_at.strftime('%d.%m.%Y в %H:%M') }}</small></p>
+    <hr style="border: 0; border-top: 1px solid var(--border); margin: 1rem 0;">
+    <div style="font-size: 1.1rem; line-height: 1.8; color: var(--text-primary);">
+        {{ post.body }}
+    </div>
+    
+    <!-- Кнопки только для автора -->
+    {% if current_user and current_user.id == post.author_id %}
+    <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+        <a href="/posts/{{ post.id }}/edit" class="btn" style="background: #f59e0b;">Редактировать</a>
+        
+        <form method="post" action="/posts/{{ post.id }}/delete" onsubmit="return confirm('Вы уверены, что хотите удалить этот пост?');">
+            <button type="submit" class="btn" style="background: #ef4444;">🗑️ Удалить</button>
+        </form>
+    </div>
+    {% endif %}
+    
+    <div style="margin-top: 2rem;">
+        <a href="/" style="color: var(--accent); text-decoration: none;">← Назад к списку</a>
+    </div>
+</div>
+{% endblock %}

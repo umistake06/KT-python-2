@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h2>Редактирование поста</h2>
+    <form method="post" action="/posts/{{ post.id }}/edit">
+        <div class="form-group">
+            <label for="title">Заголовок</label>
+            <input type="text" id="title" name="title" value="{{ post.title }}" required>
+        </div>
+        <div class="form-group">
+            <label for="body">Текст поста</label>
+            <textarea id="body" name="body" rows="6" required style="width:100%; padding:0.75rem; border-radius:8px; background:var(--bg-color); color:var(--text-primary); border:1px solid var(--border);">{{ post.body }}</textarea>
+        </div>
+        <button type="submit" class="btn">Сохранить изменения</button>
+        <a href="/posts/{{ post.id }}" style="margin-left: 1rem; color: var(--text-secondary); text-decoration: none;">Отмена</a>
+    </form>
+</div>
+{% endblock %}

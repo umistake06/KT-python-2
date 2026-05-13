@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h2> Регистрация</h2>
+    {% if error %}<div class="error">{{ error }}</div>{% endif %}
+    <form method="post">
+        <div class="form-group">
+            <label for="username">Придумайте логин</label>
+            <input type="text" id="username" name="username" required placeholder="Например: ivan_2026">
+        </div>
+        <div class="form-group">
+            <label for="password">Придумайте пароль</label>
+            <input type="password" id="password" name="password" required placeholder="Минимум 6 символов">
+        </div>
+        <button type="submit" class="btn">Создать аккаунт</button>
+    </form>
+    <p style="margin-top: 1rem;">Уже есть аккаунт? <a href="/login" style="color: var(--accent);">Войти</a></p>
+</div>
+{% endblock %}
